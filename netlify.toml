@@ -1,0 +1,24 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[plugins]]
+  package = "@netlify/plugin-emails"
+
+[template.environment]
+  NETLIFY_EMAILS_PROVIDER = "sendgrid"
+  NETLIFY_EMAILS_SECRET = "Set this to a random string"
+  NETLIFY_EMAILS_PROVIDER_API_KEY = "Your SendGrid API key"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/widget.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET"
+    Content-Type = "application/javascript; charset=utf-8"
